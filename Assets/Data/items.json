@@ -1,0 +1,147 @@
+{
+    "healing_potion": {
+        "name": "Healing Potion",
+        "description": "A small vial filled with a bubbling red liquid. It restores 50 health when used.",
+        "type": "consumable",
+        "heal_amount": 50,
+        "attack_bonus": 0,
+        "defense_bonus": 0,
+        "speed_bonus": 0,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "duration": 0
+    },
+
+    "strength_tonic": {
+        "name": "Strength Tonic",
+        "description": "A small vial filled with a glowing blue liquid. It increases attack by 10 for 3 turns when used.",
+        "type": "consumable",
+        "heal_amount": 0,
+        "attack_bonus": 10,
+        "defense_bonus": 0,
+        "speed_bonus": 0,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "duration": 3
+    },
+
+        "max_healing_potion": {
+        "name": "Max Healing Potion",
+        "description": "A large vial filled with a shimmering golden ambrosia. It fully restores health when used.",
+        "type": "consumable",
+        "heal_amount": 9999,
+        "attack_bonus": 0,
+        "defense_bonus": 0,
+        "speed_bonus": 0,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "duration": 0
+    },
+
+    "demons_mark": {
+        "name": "Demon's Mark",
+        "description": "A cursed amulet that increases attack by 20 but reduces health by 25% when equipped.",
+        "type": "equippable",
+        "slot": "accessory",
+        "heal_amount": 0,
+        "attack_bonus": 20,
+        "defense_bonus": 0,
+        "speed_bonus": 0,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "health_penalty_percent": 0.25,
+        "duration": -1
+    },
+
+    "iron_sword": {
+        "name": "Iron Sword",
+        "description": "A sturdy iron sword that increases attack by 5 when equipped.",
+        "type": "equippable",
+        "slot": "weapon",
+        "heal_amount": 0,
+        "attack_bonus": 5,
+        "defense_bonus": 0,
+        "speed_bonus": 0,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "duration": -1,
+        "kill_count": 0,
+        "kill_threshold": [3,6,9],
+        "tiers": [
+            {"name": "Tempered Sword", "description": "Your blade has tasted blood most foul. Attack increased by 1.", "attack_increase": 1},
+            {"name": "What if I don't want to be a sword?!", "description": "The sword is going through a phase... Attack increased by 1.", "attack_increase": 1},
+            {"name": "Wraith Blade", "description": "The sword binds to your soul. Attack increased by 1.", "attack_increase": 1}
+        ]
+    },
+
+    "bicycle_helmet": {
+        "name": "Bicycle Helmet",
+        "description": "A bicycle helmet...really? O-okay, it increases defense by 2 when equipped, but you feel dumb.",
+        "type": "equippable",
+        "slot": "head",
+        "heal_amount": 0,
+        "attack_bonus": 0,
+        "defense_bonus": 2,
+        "speed_bonus": 0,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "duration": -1
+    },
+
+    "kevlar_suit": {
+        "name": "Kevlar Suit",
+        "description": "What style? \u001b[3mItalian.\u001b[0m How many buttons? \u001b[3mTwo.\u001b[0m Trousers? \u001b[3mTapered.\u001b[0m How about the lining? \u001b[3mTactical.\u001b[0m\n\nIncreases defense by 2.",
+        "type": "equippable",
+        "slot": "body",
+        "heal_amount": 0,
+        "attack_bonus": 0,
+        "defense_bonus": 2,
+        "speed_bonus": -2,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "duration": -1
+    },
+
+    "corduroy_pants": {
+        "name": "Corduroy Pants",
+        "description": "They're itchy, but your mom likes them.\n\nIncreases defense by 1.",
+        "type": "equippable",
+        "slot": "legs",
+        "heal_amount": 0,
+        "attack_bonus": 0,
+        "defense_bonus": 1,
+        "speed_bonus": 0,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "duration": -1
+    },
+
+    "researchers_journal": {
+        "name": "Researcher's Journal",
+        "key_id": "researchers_journal",
+        "description": "An old, leather-bound journal filled with notes and sketches about the experiments conducted in the occult laboratory.",
+        "type": "key",
+        "heal_amount": 0,
+        "attack_bonus": 0,
+        "defense_bonus": 0,
+        "speed_bonus": 0,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "duration": 0,
+        "content": "Day 14: Experiments are progessing, but at great cost to the staff. Beyond physical injuries, some have started to show signs of mental instability.\n\nDay 27: The latest injection showed promise; Subject 42 has developed enhanced strength and agility, but is now completely unresponsive to stimuli.\n\nDay 28: Subject 42 has dissappeared and lockdown procedures are in effect. Someone please help me..."
+    },
+
+    "boss_key": {
+        "name": "Death's Icon",
+        "key_id": "boss_key",
+        "description": "A heavy, ornate impression of a skull, made of blackened iron. It looks like it fits in something.",
+        "type": "key",
+        "heal_amount": 0,
+        "attack_bonus": 0,
+        "defense_bonus": 0,
+        "speed_bonus": 0,
+        "crit_chance_bonus": 0,
+        "crit_multiplier_bonus": 0,
+        "duration": 0
+    }
+}

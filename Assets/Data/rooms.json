@@ -1,0 +1,350 @@
+{
+    "subway_platform": {
+        "name": "Subway Platform",
+        "description": "An abandoned subway platform bathed in flickering emergency lighting.\nGraffiti covers the walls and the air smells of rust and stale water.\nA strange symbol stands out from the rest, it looks like a stick with three branches on the left, and two on the right.",
+        "connections": {
+            "north": "maintenance_tunnel"
+        },
+        "image_paths": {},
+        "items": ["iron_sword"],
+        "enemy": null
+    },
+
+    "maintenance_tunnel": {
+        "name": "Maintenance Tunnel",
+        "description": "A low-ceilinged tunnel running parallel to the subway tracks.\nPipes line the walls, some leaking a dark fluid. The hum of electricity is constant.",
+        "connections": {
+            "south": "subway_platform",
+            "north": "flooded_concourse",
+            "west": "sewer"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Pixie",
+            "description": "A small winged demon with a mischievous grin. Don't let the size fool you.",
+            "health": 25,
+            "attack": 6,
+            "defense": 1,
+            "speed": 14,
+            "crit_chance": 0.12,
+            "crit_multiplier": 1.5,
+            "xp_reward": 32,
+            "escape_difficulty": 0.15,
+            "loot": ["strength_tonic"]
+        }
+    },
+
+    "sewer": {
+        "name": "Sewer",
+        "description": "A flooded sewer tunnel knee-deep in black water.\nThe stench is overwhelming. Something large brushes against your leg.\nYou're pretty sure you need new pants...",
+        "connections": {
+            "east": "maintenance_tunnel",
+            "north": "server_room"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Slime",
+            "description": "A pulsating mass of corrupted ooze. It absorbs damage and dissolves flesh.",
+            "health": 40,
+            "attack": 5,
+            "defense": 4,
+            "speed": 3,
+            "crit_chance": 0.05,
+            "crit_multiplier": 1.5,
+            "xp_reward": 40,
+            "escape_difficulty": 0.1
+        }
+    },
+
+    "flooded_concourse": {
+        "name": "Flooded Concourse",
+        "description": "The main concourse of the station, now ankle-deep in murky water.\nTicket booths stand empty, their screens displaying corrupted occult symbols.\nMultiple passages lead deeper into the dark.",
+        "connections": {
+            "south": "maintenance_tunnel",
+            "north": "ritual_corridor",
+            "west": "server_room",
+            "east": "collapsed_passage"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": null
+    },
+
+    "server_room": {
+        "name": "Server Room",
+        "description": "Banks of servers still hum with power, their indicator lights blinking in eerie patterns.\nCables snake across the floor like veins. A terminal displays a single line of text:\n'GATE INTEGRITY FALLING...77%.'",
+        "connections": {
+            "east": "flooded_concourse",
+            "north": "power_grid",
+            "south": "sewer",
+            "west": "manufacturing_room"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Jack Frost",
+            "description": "A snowman-like demon with a manic grin. It screams 'Hee-ho!' as it charges.",
+            "health": 45,
+            "attack": 9,
+            "defense": 3,
+            "speed": 8,
+            "crit_chance": 0.1,
+            "crit_multiplier": 1.75,
+            "xp_reward": 56,
+            "escape_difficulty": 0.25
+        }
+    },
+
+    "power_grid": {
+        "name": "Power Grid",
+        "description": "A massive electrical substation repurposed for something...you can't quite comprehend.\nPentagrammic circuits are etched into the transformer casings.\nThe air tastes of ozone and burnt offerings.",
+        "connections": {
+            "south": "server_room",
+            "east": "ritual_corridor"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Pyro Jack",
+            "description": "A pumpkin-headed demon carrying a blazing lantern. The flames cast no shadow.",
+            "health": 50,
+            "attack": 11,
+            "defense": 4,
+            "speed": 7,
+            "crit_chance": 0.12,
+            "crit_multiplier": 1.75,
+            "xp_reward": 64,
+            "escape_difficulty": 0.3
+        }
+    },
+
+    "ritual_corridor": {
+        "name": "Ritual Corridor",
+        "description": "A long corridor lined with chalk circles and diagrams.\nCandles burn at intervals but no wax drips.\nThe walls seem to breathe.",
+        "connections": {
+            "south": "flooded_concourse",
+            "north": "summoning_chamber",
+            "west": "power_grid",
+            "east": "morgue"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Oni",
+            "description": "A hulking red demon with metal horns and a spiked club. It smells of iron...",
+            "health": 65,
+            "attack": 14,
+            "defense": 6,
+            "speed": 5,
+            "crit_chance": 0.1,
+            "crit_multiplier": 2.0,
+            "xp_reward": 80,
+            "escape_difficulty": 0.4
+        },
+        "blocks_exits": ["north"]
+    },
+
+    "summoning_chamber": {
+        "name": "Summoning Chamber",
+        "description": "The heart of the ritual. A massive summoning circle dominates the floor, still glowing faintly.\nIn the center, resting on a stone altar, is an ornate carving.\nThe silence here is absolute, you can't even hear your own footsteps.",
+        "connections": {
+            "south": "ritual_corridor"
+        },
+        "image_paths": {},
+        "items": ["boss_key", "kevlar_suit"],
+        "enemy": null
+    },
+
+    "morgue": {
+        "name": "Morgue",
+        "description": "Steel drawers line the walls, most hanging open and empty, some not...\nA medical chart covered in some unknown script hangs from a hook.\nOne drawer is scratching from the inside.",
+        "connections": {
+            "west": "ritual_corridor",
+            "south": "collapsed_passage"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Ghoul",
+            "description": "A pale, gaunt figure that moves on all fours. Its jaw unhinges as it hisses.",
+            "health": 55,
+            "attack": 12,
+            "defense": 3,
+            "speed": 11,
+            "crit_chance": 0.15,
+            "crit_multiplier": 1.75,
+            "xp_reward": 72,
+            "escape_difficulty": 0.3
+        }
+    },
+
+    "collapsed_passage": {
+        "name": "Collapsed Passage",
+        "description": "A section of tunnel that partially caved in, leaving a narrow crawlspace.\nRusted rebar juts from the concrete. A duffel bag is wedged in the rubble.",
+        "connections": {
+            "west": "flooded_concourse",
+            "north": "morgue",
+            "east": "hidden_cache"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": null
+    },
+
+    "hidden_cache": {
+        "name": "Hidden Cache",
+        "description": "A small alcove someone used as a stash, maybe a prepper, probably a cultist.\nShelves of supplies line the walls. A handwritten note reads:\n'If you find this, I'll find you.'",
+        "connections": {
+            "west": "collapsed_passage",
+            "east": "derelict_car"
+        },
+        "image_paths": {},
+        "items": ["healing_potion", "strength_tonic"],
+        "enemy": null
+    },
+
+    "derelict_car": {
+        "name": "Derelict Subway Car",
+        "description": "An old subway car, derailed and wedged sideways in the tunnel.\nSeats are overturned, windows are shattered, and old newspapers litter the floor.\nThe headlines all reference the same thing...your name.",
+        "connections": {
+            "west": "hidden_cache"
+        },
+        "image_paths": {},
+        "items": ["bicycle_helmet"],
+        "enemy": {
+            "name": "Shadow",
+            "description": "A being of pitch darkness wearing a human shape. Looking at its face makes your head hurt.",
+            "health": 50,
+            "attack": 13,
+            "defense": 5,
+            "speed": 10,
+            "crit_chance": 0.18,
+            "crit_multiplier": 2.0,
+            "xp_reward": 72,
+            "escape_difficulty": 0.35
+        }
+    },
+
+    "manufacturing_room": {
+        "name": "Manufacturing Room",
+        "description": "An old industrial space repurposed into something nightmarish.",
+        "connections": {
+            "north": "processing_room",
+            "west": "velvet_room",
+            "south": "civvie_11",
+            "east": "server_room"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Garuda",
+            "description": "A mechanical bird demon fused with industrial parts. Its wings are razor sharp.",
+            "health": 60,
+            "attack": 13,
+            "defense": 5,
+            "speed": 12,
+            "crit_chance": 0.14,
+            "crit_multiplier": 1.75,
+            "xp_reward": 80,
+            "escape_difficulty": 0.35
+        }
+    },
+
+    "velvet_room": {
+        "name": "Velvet Room",
+        "description": "You step through a door that shouldn't exist into a long, velvet-lined elevator\nthat appears to be moving between floors that have no end.\nAn old man in a white suit smiles at you.\n'Welcome to my humble abode. Between dream and reality, your power waits.'",
+        "connections": {
+            "east": "manufacturing_room",
+            "north": "throne_approach"
+        },
+        "image_paths": {},
+        "items": ["demons_mark"],
+        "enemy": null
+    },
+
+    "civvie_11": {
+        "name": "Civvie 11's Safe Room",
+        "description": "A concrete bunker plastered with tactical maps and sticky notes.\nA camera on a tripod points at an empty chair. A note taped to it reads:\n'Gone to find the boss. Probably died. 5/7.'",
+        "connections": {
+            "north": "manufacturing_room"
+        },
+        "image_paths": {},
+        "items": ["max_healing_potion"],
+        "enemy": null
+    },
+
+    "processing_room": {
+        "name": "Processing Room",
+        "description": "A sterile white room stained with things that aren't white anymore.\nFiling cabinets overflow with documents in a language that shifts when you look directly at it.",
+        "connections": {
+            "south": "manufacturing_room",
+            "west": "throne_approach",
+            "north": "occult_lab"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Nue",
+            "description": "A chimeric demon — tiger's paws, monkey's head, tanuki's body. It crackles with a dark lightning.",
+            "health": 70,
+            "attack": 15,
+            "defense": 7,
+            "speed": 9,
+            "crit_chance": 0.15,
+            "crit_multiplier": 2.0,
+            "xp_reward": 96,
+            "escape_difficulty": 0.45
+        }
+    },
+
+    "occult_lab": {
+        "name": "Occult Laboratory",
+        "description": "A laboratory with glass tanks lining the walls, something keeps twitching inside one of them.\nA researcher's journal lies open on the desk.",
+        "connections": {
+            "south": "processing_room"
+        },
+        "image_paths": {},
+        "items": ["researchers_journal", "corduroy_pants"],
+        "enemy": null
+    },
+
+    "throne_approach": {
+        "name": "Throne Approach",
+        "description": "A grand corridor leading to an ancient throne. The walls are carved obsidian.\nTorches burn and flicker with cold flame.\nA massive locked door stands before you, with an indent shaped like [Not sure yet].",
+        "connections": {
+            "east": "processing_room",
+            "west": "demon_throne",
+            "south": "velvet_room"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": null,
+        "locked": true,
+        "required_key": "boss_key"
+    },
+
+    "demon_throne": {
+        "name": "Demon Throne",
+        "description": "A room of black stone, looking at any one spot too long makes you feel unbalanced.\nAt its center, upon a throne of sinew and bone, sits Eligor.\nA demon knight beside a spectral horse, holding a lance that drips with cold fire.\nIt turns its gaze upon you. 'You have come far, mortal. Further than most.' \n'But not all...'.",
+        "connections": {
+            "east": "throne_approach"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Eligor",
+            "description": "A great duke of Hell. A knight upon a ghostly steed, wielder of the Spear of Longinus.",
+            "health": 200,
+            "attack": 25,
+            "defense": 8,
+            "speed": 8,
+            "crit_chance": 0.2,
+            "crit_multiplier": 2.5,
+            "xp_reward": 500,
+            "escape_difficulty": 0.95
+        },
+        "is_final": true
+    }
+}
