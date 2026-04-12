@@ -78,7 +78,11 @@ class Game:
         elif command in ['inventory', 'i']:
             if not self.player.inventory:
                 return "Your inventory is empty."
-            return "You are carrying:\n" + "\n".join(f"- {item.name}" for item in self.player.inventory)
+            counts = {}
+            for item in self.player.inventory:
+                counts[item.name] = counts.get(item.name, 0) + 1
+            lines = [f"- {name} x{qty}" if qty > 1 else f"- {name}" for name, qty in counts.items()]
+            return "You are carrying:\n" + "\n".join(lines)
         elif command in ['stats', 's']:
             return (f"Health: {self.player.health}/{self.player.max_health}\n"
                     f"Attack: {self.player.attack}\n"
