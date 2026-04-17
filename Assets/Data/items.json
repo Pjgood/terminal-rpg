@@ -116,6 +116,12 @@
         "duration": -1
     },
 
+    "grimoire": {
+        "name": "Grimoire",
+        "description": "An ancient tome filled with arcane knowledge. It allows you to decipher and cast spells.",
+        "type": "grimoire"
+    },
+
     "researchers_journal": {
         "name": "Researcher's Journal",
         "key_id": "researchers_journal",

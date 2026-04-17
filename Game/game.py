@@ -22,14 +22,15 @@ def _resource_path(relative_path):
 
 class Game:
     def __init__(self):
-        self.player = Player("Hero", health=100, attack=10, defense=5, speed=5, crit_chance=0.1, crit_multiplier=2)
+        self.player = Player("Hero", health=100, mana=60, mana_regen=5, attack=10, 
+                             defense=5, speed=5, crit_chance=0.1, crit_multiplier=2)
         self.rooms = {}
         self.running = True
         self.outcome = None
         self.enemies_defeated = 0
 
     def load_world(self):
-        loader = WorldLoader(_resource_path("Assets/Data/rooms.json"), _resource_path("Assets/Data/items.json"))
+        loader = WorldLoader(_resource_path("Assets/Data/rooms.json"), _resource_path("Assets/Data/items.json"), _resource_path("Assets/Data/spells.json"))
         self.rooms, self.item_catalogue = loader.load()
         self.player.current_room = self.rooms['subway_platform']
 
@@ -84,12 +85,15 @@ class Game:
             lines = [f"- {name} x{qty}" if qty > 1 else f"- {name}" for name, qty in counts.items()]
             return "You are carrying:\n" + "\n".join(lines)
         elif command in ['stats', 's']:
-            return (f"Health: {self.player.health}/{self.player.max_health}\n"
+            return (f"Level: {self.player.level}\n"
+                    f"Health: {self.player.health}/{self.player.max_health}\n"
                     f"Attack: {self.player.attack}\n"
                     f"Defense: {self.player.defense}\n"
                     f"Speed: {self.player.speed}\n"
                     f"Crit Chance: {self.player.crit_chance*100:.1f}%\n"
                     f"Crit Multiplier: {self.player.crit_multiplier:.1f}x\n"
+                    f"Mana: {self.player.mana}/{self.player.max_mana}\n"
+                    f"Mana Regen: {self.player.mana_regen}\n"
                     f"Experience: {self.player.experience}\n"
                     f"To next level: {self.player.xp_to_next_level - self.player.experience}")
         elif command.startswith('attack '):
@@ -100,7 +104,11 @@ class Game:
                 return "There's no such enemy here."
         elif command.startswith('examine '):
             examine = command[8:]
-            return self.player.examine(examine)
+            message, damage = self.player.examine(examine)
+            if damage > 0:
+                self.player.health -= damage
+                message += f"\n(-{damage} HP)"
+            return message
         elif command.startswith('read '):
             item_name = command[5:]
             item = next((i for i in self.player.inventory if i.name.lower() == item_name), None)
@@ -123,13 +131,23 @@ class Game:
                     "- stats/s: Check your stats\n"
                     "- attack [enemy]: Attack an enemy\n"
                     "- help/h: Show this help message")
+        elif command.startswith('drink '):
+            target = command[6:]
+            if target == 'water' and self.player.current_room.name == 'Sewer':
+                print("You lean down and drink deeply of the foul water.")
+                print("You were warned.")
+                self.running = False
+                self.outcome = 'death'
         else:
             return "Unknown command."
         
     def print_combat_menu(self, player, enemy):
-        print(f"[ {player.name} HP: {player.health}/{player.max_health} ] ----------vs---------- [ {enemy.name} HP: {enemy.health} ]")
+        print(f"[ {player.name} HP: {player.health}/{player.max_health} MP: {player.mana}/{player.max_mana} ] ----------vs---------- [ {enemy.name} HP: {enemy.health} ]")
         commands = [
-            "[A] Attack",
+            "[A] Attack"]
+        if any(hasattr(i, 'get_spell') for i in player.inventory):
+             commands.append("[C] Cast Spell")
+        commands += [
             "[U] Use [item]",
             "[E] Equip [item]",
             "[Q] Unequip [slot]",
@@ -165,6 +183,21 @@ class Game:
                 damage, is_crit = combat.player_attack()
                 crit_text = " \u001b[33mCritical hit!\u001b[0m" if is_crit else ""
                 print(f"You attack the {enemy.name} for {damage} damage!{crit_text}")
+            elif player_action in ('cast', 'c') or player_action.startswith('cast '):
+                grimoire = next((i for i in self.player.inventory if hasattr(i, 'get_spell')), None)
+                if not grimoire:
+                    print("You don't have a grimoire.")
+                    continue
+                if player_action in ('cast', 'c'):
+                    print(grimoire.list_spells())
+                    spell_name = input("Cast which spell? ").strip().lower()
+                else:
+                    spell_name = player_action[5:]
+                spell = grimoire.get_spell(spell_name)
+                if not spell:
+                    print("You don't know that spell.")
+                    continue
+                print(spell.cast(self.player, enemy))
             elif player_action in ('use', 'u') or player_action.startswith('use ') or player_action.startswith('u '):
                 if player_action in ('use', 'u'):
                     player_action = 'use ' + input("Use which item? ").strip().lower()
@@ -204,9 +237,16 @@ class Game:
                 break
 
             # Enemy's turn
-            damage, is_crit = combat.enemy_attack()
-            crit_text = " \u001b[33mCritical hit!\u001b[0m" if is_crit else ""
-            print(f"The {enemy.name} attacks you for {damage} damage!{crit_text}")
+            for msg in enemy.tick_debuffs():
+                print(msg)
+            if combat.is_over():
+                break
+            if enemy.is_frozen():
+                print(f"The {enemy.name} is frozen and loses their turn!")
+            else:
+                damage, is_crit = combat.enemy_attack()
+                crit_text = " \u001b[33mCritical hit!\u001b[0m" if is_crit else ""
+                print(f"The {enemy.name} attacks you for {damage} damage!{crit_text}")
             self.player.tick_buffs()
 
         if self.player.is_alive:
@@ -221,6 +261,7 @@ class Game:
                     if item:
                         self.player.inventory.append(item)
                         print(f"- {item.name}")
+            self.player.regen_mana()
             weapon = self.player.equipped.get('weapon')
             if weapon and hasattr(weapon, 'register_kill'):
                 weapon.register_kill(self.player)

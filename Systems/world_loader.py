@@ -2,11 +2,14 @@ import json
 from Models.enemy import Enemy
 from Models.room import Room
 from Models.item import Consumable, Equippable, Key
+from Models.grimoire import Grimoire
+from Models.spells import Spell
 
 class WorldLoader:
-    def __init__(self, rooms_path, items_path):
+    def __init__(self, rooms_path, items_path, spells_path):
         self.rooms_path = rooms_path
         self.items_path = items_path
+        self.spells_path = spells_path
 
     def load(self):
         # returns a dict of {room_id: Room object}
@@ -14,6 +17,11 @@ class WorldLoader:
             rooms_data = json.load(f)
         with open(self.items_path, 'r') as f:
             items_data = json.load(f)
+        with open(self.spells_path, 'r') as f:
+            spells_data = json.load(f)
+        spells = [self._build_spell(s) for s in spells_data.values()]
+        self.grimoire = Grimoire("Grimoire", "An ancient tome filled with arcane knowledge. It allows you to decipher and cast spells.", spells)
+        
         item_catalogue = {item_id: self._build_item(item_data) for item_id, item_data in items_data.items()}
         rooms = {room_id: self._build_room(room_id, room_data, item_catalogue) for room_id, room_data in rooms_data.items()}
         return rooms, item_catalogue
@@ -53,8 +61,30 @@ class WorldLoader:
                 key_id=item_data['key_id'],
                 content=item_data.get('content', None)
             )
+        elif item_type == 'grimoire':
+            return self.grimoire
         else:
             raise ValueError(f"Unknown item type: {item_type}")
+        
+    def _build_spell(self, spell_data):
+        damage = spell_data.get('damage', spell_data.get('base_damage', 0))
+        spell = Spell(
+            name=spell_data['name'],
+            description=spell_data['description'],
+            mana_cost=spell_data['mana_cost'],
+            damage=damage,
+            base_damage=spell_data.get('base_damage', damage),
+            scaling_factor=spell_data.get('scaling_factor', 0.0),
+            unlock_triggers=spell_data.get('unlock_triggers', []),
+            cast_thresholds=spell_data.get('cast_thresholds', []),
+            tiers=spell_data.get('tiers', []),
+            art=spell_data.get('art', ""),
+            status_effect=spell_data.get('status_effect', None),
+            animation=spell_data.get('animation', None),
+            animation_options=spell_data.get('animation_options', None)
+        )
+        spell.impact_frame = spell_data.get('impact_frame', None)
+        return spell
 
     def _build_room(self, room_id, room_data, item_catalogue):
         items = [item_catalogue[item_id] for item_id in room_data.get('items', []) if item_id in item_catalogue]
@@ -70,7 +100,8 @@ class WorldLoader:
             locked=room_data.get('locked', False),
             required_key=room_data.get('required_key', None),
             is_final=room_data.get('is_final', False),
-            blocks_exits=room_data.get('blocks_exits', [])
+            blocks_exits=room_data.get('blocks_exits', []),
+            examinables=room_data.get('examinables', {})
         )
     
     def _build_enemy(self, enemy_data):
@@ -85,5 +116,6 @@ class WorldLoader:
             crit_multiplier=enemy_data.get('crit_multiplier', 1.5),
             xp_reward=enemy_data.get('xp_reward', 10),
             escape_difficulty=enemy_data.get('escape_difficulty', 0.3),
-            loot=enemy_data.get('loot', [])
+            loot=enemy_data.get('loot', []),
+            freeze_resistance=enemy_data.get('freeze_resistance', 0.0)
         )

@@ -63,6 +63,10 @@ def show_end_screen(game):
 def main():
     while True:
         game = Game()
+        name = input("Enter your name, brave adventurer: ").strip()
+        if not name:
+            name = "Hero"
+        game.player.name = name
         game.load_world()
         print_startup()
         print(game.player.current_room.describe())

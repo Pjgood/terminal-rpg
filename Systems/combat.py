@@ -14,7 +14,7 @@ class Combat:
         damage -= self.enemy.defense
         if damage < 0:
             damage = 0
-        damage = int(damage)
+        damage = int(damage * self.enemy.shock_multiplier())
         self.enemy.take_damage(damage)
         return damage, is_crit
 

@@ -1,11 +1,12 @@
 class Room:
     def __init__(self, name, description, connections, image_paths, items=None, enemy=None,
-                 locked=False, required_key=None, is_final=False, blocks_exits=None):
+                 locked=False, required_key=None, is_final=False, blocks_exits=None, examinables=None):
         self.name = name
         self.description = description
         self.connections = connections  # {'north': room_id}
         self.image_paths = image_paths  # {'north': 'path.png'}
         self.items = items if items is not None else []
+        self.examinables = examinables if examinables is not None else {}
         self.enemy = enemy
         self.locked = locked
         self.required_key = required_key

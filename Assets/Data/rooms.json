@@ -2,6 +2,12 @@
     "subway_platform": {
         "name": "Subway Platform",
         "description": "An abandoned subway platform bathed in flickering emergency lighting.\nGraffiti covers the walls and the air smells of rust and stale water.\nA strange symbol stands out from the rest, it looks like a stick with three branches on the left, and two on the right.",
+        "examinables": {
+            "wall": "Grimy with a familiar dirt and rust you're used to, but the symbol on the wall stands out.",
+            "graffiti": "Most of the graffiti is indecipherable, but one symbol keeps repeating.",
+            "stick": "The symbol on the wall resembles a stick with branches on both ends, three on the left and two on the right. \nYou can't place where you've seen it, but it makes you feel a little safer looking at it.",
+            "symbol": "stick"
+        },
         "connections": {
             "north": "maintenance_tunnel"
         },
@@ -13,6 +19,11 @@
     "maintenance_tunnel": {
         "name": "Maintenance Tunnel",
         "description": "A low-ceilinged tunnel running parallel to the subway tracks.\nPipes line the walls, some leaking a dark fluid. The hum of electricity is constant.",
+        "examinables": {
+            "fluid": "The fluid leaking from the pipes is thick and black, with a faint iridescent sheen. It smells like oil mixed with something metallic.",
+            "pipes": "The pipes are old and corroded. Whatever is dripping from them is pooling on the floor and...is it moving?",
+            "electricity": "You uh, try to see the electricity. It looks...electric."
+        },
         "connections": {
             "south": "subway_platform",
             "north": "flooded_concourse",
@@ -38,6 +49,11 @@
     "sewer": {
         "name": "Sewer",
         "description": "A flooded sewer tunnel knee-deep in black water.\nThe stench is overwhelming. Something large brushes against your leg.\nYou're pretty sure you need new pants...",
+        "examinables": {
+            "water": "The water is thick and opaque, with a foul stench. \u001b[1mDO NOT\u001b[0m try to drink it.",
+            "stench": { "text": "You inhale deeply and regret it immediately.",
+            "damage": 5 }
+        },
         "connections": {
             "east": "maintenance_tunnel",
             "north": "server_room"
@@ -61,6 +77,16 @@
     "flooded_concourse": {
         "name": "Flooded Concourse",
         "description": "The main concourse of the station, now ankle-deep in murky water.\nTicket booths stand empty, their screens displaying corrupted occult symbols.\nMultiple passages lead deeper into the dark.",
+        "examinables": {
+            "ticket booths": "The ticket booths are covered in grime, but the screens still flicker with corrupted symbols. They seem to pulse with a dark energy.",
+            "ticket booth": "ticket booths",
+            "water": "The water is murky and cold. You feel for Costanza a little bit.",
+            "corrupted symbol": "This symbol is different than the one on the subway platform.\nThis one \u001b[2;33mappears strange, with a question mark shape on top of a golden glyph\u001b[0m.\nYou feel sick and have to look away.",
+            "symbol": "corrupted symbol",
+            "occult symbol": "corrupted symbol",
+            "passages": "You try to peer down each passage, but you can't make out more than a few meters in front of you.",
+            "passage": "passages"
+        },
         "connections": {
             "south": "maintenance_tunnel",
             "north": "ritual_corridor",
@@ -75,6 +101,14 @@
     "server_room": {
         "name": "Server Room",
         "description": "Banks of servers still hum with power, their indicator lights blinking in eerie patterns.\nCables snake across the floor like veins. A terminal displays a single line of text:\n'GATE INTEGRITY FALLING...77%.'",
+        "examinables": {
+            "servers": "The servers are old and covered in dust, but they still run. The indicator lights blink in a pattern that seems almost...musical.",
+            "server": "servers",
+            "cables": "The cables are thick and tangled, snaking across the floor and disappearing into the walls. You swear they move slightly if you look hard enough.",
+            "cable": "cables",
+            "terminal": "You try to make out more of the text, but through the flickers all you can make out is \u001b[7;2mwrong plane\u001b[0m and \u001b[7;2mbreach widening\u001b[0m.",
+            "terminals": "terminal"
+        },
         "connections": {
             "east": "flooded_concourse",
             "north": "power_grid",
@@ -100,6 +134,11 @@
     "power_grid": {
         "name": "Power Grid",
         "description": "A massive electrical substation repurposed for something...you can't quite comprehend.\nPentagrammic circuits are etched into the transformer casings.\nThe air tastes of ozone and burnt offerings.",
+        "examinables": {
+            "circuits": "The circuits are etched into the metal in a complex pattern that you think resembles the \u001b[2;33msymbol\u001b[0m you saw in the concourse.",
+            "circuit": "circuits",
+            "transformers": "Decripit and filthy, the transformers still hum with power. The circuits etched into their casings seem to amplify the energy in the room."
+        },
         "connections": {
             "south": "server_room",
             "east": "ritual_corridor"
@@ -123,6 +162,13 @@
     "ritual_corridor": {
         "name": "Ritual Corridor",
         "description": "A long corridor lined with chalk circles and diagrams.\nCandles burn at intervals but no wax drips.\nThe walls seem to breathe.",
+        "examinables": {
+            "chalk circles": "The circles are drawn with meticulous precision, each one containing a different occult pattern.",
+            "chalk circle": "chalk circles",
+            "diagrams": "These depict various ritualistic scenes, some of them involving...\u001b[1myou\u001b[0m. They shift and change when you look away.",
+            "diagram": "diagrams",
+            "candles": "The candles burn with a cold flame that casts no shadow. They emit a faint, eerie glow that seems to distort the air around them."
+        },
         "connections": {
             "south": "flooded_concourse",
             "north": "summoning_chamber",
@@ -130,7 +176,7 @@
             "east": "morgue"
         },
         "image_paths": {},
-        "items": [],
+        "items": ["grimoire"],
         "enemy": {
             "name": "Oni",
             "description": "A hulking red demon with metal horns and a spiked club. It smells of iron...",
@@ -160,6 +206,12 @@
     "morgue": {
         "name": "Morgue",
         "description": "Steel drawers line the walls, most hanging open and empty, some not...\nA medical chart covered in some unknown script hangs from a hook.\nOne drawer is scratching from the inside.",
+        "examinables": {
+            "drawers": "The steel drawers are cold and almost reflective in their sheen. Most of them are empty, but a few still contain things that twitch.",
+            "drawer": "drawers",
+            "medical chart": "The chart is covered in a similar mysterious script that shifts and changes when you try to read it. You can make out the words \u001b[7;2mdisease\u001b[0m and \u001b[7;2minfection\u001b[0m.",
+            "chart": "medical chart"
+        },
         "connections": {
             "west": "ritual_corridor",
             "south": "collapsed_passage"
@@ -182,7 +234,11 @@
 
     "collapsed_passage": {
         "name": "Collapsed Passage",
-        "description": "A section of tunnel that partially caved in, leaving a narrow crawlspace.\nRusted rebar juts from the concrete. A duffel bag is wedged in the rubble.",
+        "description": "A section of tunnel that partially caved in, leaving a narrow crawlspace.\nRusted rebar juts from the concrete.",
+        "examinables": {
+            "crawlspace": "The crawlspace is tight and jagged, forcing you to squeeze through sideways.\nYou're not particularly claustrophobic, but this is uncomfortable.",
+            "rebar": "The rusted rebar is sharp and brittle. It looks like it could break off and cause some damage if you brush against it the wrong way."
+        },
         "connections": {
             "west": "flooded_concourse",
             "north": "morgue",
@@ -196,6 +252,11 @@
     "hidden_cache": {
         "name": "Hidden Cache",
         "description": "A small alcove someone used as a stash, maybe a prepper, probably a cultist.\nShelves of supplies line the walls. A handwritten note reads:\n'If you find this, I'll find you.'",
+        "examinables": {
+            "shelves": "The shelves are stocked with various supplies, some mundane and some more unusual. You see canned food, bottled water, a first aid kit, and a few strange vials filled with swirling liquids.",
+            "shelf": "shelves",
+            "note": "The note is scrawled in a hurried, almost frantic handwriting. The words 'If you find this, I'll find you' are underlined twice."
+        },
         "connections": {
             "west": "collapsed_passage",
             "east": "derelict_car"
@@ -208,6 +269,12 @@
     "derelict_car": {
         "name": "Derelict Subway Car",
         "description": "An old subway car, derailed and wedged sideways in the tunnel.\nSeats are overturned, windows are shattered, and old newspapers litter the floor.\nThe headlines all reference the same thing...your name.",
+        "examinables": {
+            "newspapers": "The newspapers are yellowed and torn, but the headlines are clear; they all reference you in some way, with sensationalized stories about your exploits and warnings of impending doom.",
+            "newspaper": "newspapers",
+            "seats": "Torned and stained, some of the seats are overturned. They look uncomfortable, but the stains are what really keeps you from resting.",
+            "windows": "The windows are shattered, with jagged glass still clinging to the frames. You can see the dark tunnel outside through the gaps."
+        },
         "connections": {
             "west": "hidden_cache"
         },
@@ -230,6 +297,11 @@
     "manufacturing_room": {
         "name": "Manufacturing Room",
         "description": "An old industrial space repurposed into something nightmarish.",
+        "examinables": {
+            "machines": "The machines are rusted and covered in grime, but they still operate with a sickly hum. They seem to be producing some kind of dark, viscous substance that drips into containers below.",
+            "machine": "machines",
+            "substance": "For a moment you reach for it, but instantly think better of it. The substance is thick and bubbling, with a faint iridescent sheen.\nIt smells like oil mixed with something metallic."
+        },
         "connections": {
             "north": "processing_room",
             "west": "velvet_room",
@@ -255,6 +327,9 @@
     "velvet_room": {
         "name": "Velvet Room",
         "description": "You step through a door that shouldn't exist into a long, velvet-lined elevator\nthat appears to be moving between floors that have no end.\nAn old man in a white suit smiles at you.\n'Welcome to my humble abode. Between dream and reality, your power waits.'",
+        "examinables": {
+            "old man": "He smiles widely at you, 'My name is Igor, and while you're welcome to stay here as long as you like, I'm waiting for someone else to arrive.'"
+        }, 
         "connections": {
             "east": "manufacturing_room",
             "north": "throne_approach"
@@ -278,6 +353,11 @@
     "processing_room": {
         "name": "Processing Room",
         "description": "A sterile white room stained with things that aren't white anymore.\nFiling cabinets overflow with documents in a language that shifts when you look directly at it.",
+        "examinables": {
+            "documents": "The documents are filled with shifting text that continues to hurt your eyes the more you try to read it. You can make out the words \u001b[7;2mdimension\u001b[0m and \u001b[7;2mbreach\u001b[0m, but the rest is indecipherable.",
+            "document": "documents",
+            "cabinets": "The filing cabinets are old, rusted, and their drawers hanging open and empty. They seem to have been ransacked, but you can't shake the feeling that something is watching you from within them."
+        },
         "connections": {
             "south": "manufacturing_room",
             "west": "throne_approach",
@@ -302,6 +382,11 @@
     "occult_lab": {
         "name": "Occult Laboratory",
         "description": "A laboratory with glass tanks lining the walls, something keeps twitching inside one of them.\nA researcher's journal lies open on the desk.",
+        "examinables": {
+            "tanks": "The glass tanks are filled with a murky liquid, and something large can be seen moving within one of them. The others are empty, but the residue on the glass suggests they once held something similar.",
+            "tank": "tanks",
+            "journal": "The journal is filled with frantic notes and diagrams about interdimensional research."
+        },
         "connections": {
             "south": "processing_room"
         },
@@ -313,6 +398,9 @@
     "throne_approach": {
         "name": "Throne Approach",
         "description": "A grand corridor leading to an ancient throne. The walls are carved obsidian.\nTorches burn and flicker with cold flame.\nA massive locked door stands before you, with an indent shaped like [Not sure yet].",
+        "examinables": {
+            "door": "The door is made of a dark, heavy material that seems to absorb light. The indent in the center is shaped like a keyhole, but it's unlike any key you've ever seen. It radiates a powerful aura that makes your skin crawl."
+        },
         "connections": {
             "east": "processing_room",
             "west": "demon_throne",
@@ -343,7 +431,8 @@
             "crit_chance": 0.2,
             "crit_multiplier": 2.5,
             "xp_reward": 500,
-            "escape_difficulty": 0.95
+            "escape_difficulty": 0.95,
+            "freeze_resistance": 0.9
         },
         "is_final": true
     }
