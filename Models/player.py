@@ -23,6 +23,7 @@ class Player:
         self.active_buffs = []
         self.current_room = None
         self.examined_targets = []
+        self.visited_rooms = set()
 
         self.equipped = {
             'weapon': None,
@@ -36,6 +37,7 @@ class Player:
         if direction in self.current_room.connections:
             new_room_id = self.current_room.connections[direction]
             self.current_room = rooms[new_room_id]
+            self.visited_rooms.add(new_room_id)
             return True
         return False
 

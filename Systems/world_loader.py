@@ -23,7 +23,7 @@ class WorldLoader:
         self.grimoire = Grimoire("Grimoire", "An ancient tome filled with arcane knowledge. It allows you to decipher and cast spells.", spells)
         
         item_catalogue = {item_id: self._build_item(item_data) for item_id, item_data in items_data.items()}
-        rooms = {room_id: self._build_room(room_id, room_data, item_catalogue) for room_id, room_data in rooms_data.items()}
+        rooms = {room_id: self._build_room(room_data, item_catalogue) for room_id, room_data in rooms_data.items()}
         return rooms, item_catalogue
 
     def _build_item(self, item_data):
@@ -86,22 +86,27 @@ class WorldLoader:
         spell.impact_frame = spell_data.get('impact_frame', None)
         return spell
 
-    def _build_room(self, room_id, room_data, item_catalogue):
+    def _build_room(self, room_data, item_catalogue):
         items = [item_catalogue[item_id] for item_id in room_data.get('items', []) if item_id in item_catalogue]
-        enemy_data = room_data.get('enemy')
-        enemy = self._build_enemy(enemy_data) if enemy_data else None
+        enemies = []
+        if room_data.get('enemy'):
+            enemies.append(self._build_enemy(room_data['enemy']))
+        if room_data.get('enemies'):
+            enemies.extend(self._build_enemies(room_data['enemies']))
         return Room(
             name=room_data['name'],
             description=room_data['description'],
             connections=room_data['connections'],
             image_paths=room_data.get('image_paths', {}),
             items=items,
-            enemy=enemy,
+            enemies=enemies,
             locked=room_data.get('locked', False),
             required_key=room_data.get('required_key', None),
             is_final=room_data.get('is_final', False),
             blocks_exits=room_data.get('blocks_exits', []),
-            examinables=room_data.get('examinables', {})
+            examinables=room_data.get('examinables', {}),
+            floor=room_data.get('floor', 1),
+            pos=room_data.get('pos', None)
         )
     
     def _build_enemy(self, enemy_data):
@@ -119,3 +124,6 @@ class WorldLoader:
             loot=enemy_data.get('loot', []),
             freeze_resistance=enemy_data.get('freeze_resistance', 0.0)
         )
+    
+    def _build_enemies(self, enemies_data):
+        return [self._build_enemy(e) for e in enemies_data]

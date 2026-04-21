@@ -63,11 +63,33 @@ def show_end_screen(game):
 def main():
     while True:
         game = Game()
-        name = input("Enter your name, brave adventurer: ").strip()
-        if not name:
-            name = "Hero"
-        game.player.name = name
         game.load_world()
+        loaded = False
+        # List all files that could be saves: .json files and files with no extension
+        save_files = [f for f in os.listdir('.') if os.path.isfile(f) and (f.endswith('.json') or '.' not in f)]
+        if save_files:
+            print("  Available save files:")
+            for f in save_files:
+                print(f"    - {f}")
+            choice = input("  Load a save file? (yes / no) : ").strip().lower()
+            if choice in ['yes', 'y']:
+                filename = input("  Enter save file name (default: save.json): ").strip()
+                if not filename:
+                    filename = 'save.json'
+                if not os.path.exists(filename):
+                    print(f"  File '{filename}' not found. Starting new game.")
+                else:
+                    try:
+                        game.load(filename)
+                        print(f"  Game loaded from {filename}.")
+                        loaded = True
+                    except Exception as e:
+                        print(f"  Failed to load save: {e}")
+        if not loaded:
+            name = input("Enter your name, brave adventurer: ").strip()
+            if not name:
+                name = "Hero"
+            game.player.name = name
         print_startup()
         print(game.player.current_room.describe())
         print()

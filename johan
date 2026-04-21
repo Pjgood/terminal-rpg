@@ -1,0 +1,32 @@
+{
+  "player_name": "Johan",
+  "health": 120,
+  "mana": 70,
+  "level": 3,
+  "experience": 12,
+  "attack": 21,
+  "defense": 7,
+  "speed": 7,
+  "max_health": 120,
+  "max_mana": 70,
+  "mana_regen": 7,
+  "crit_chance": 0.12,
+  "crit_multiplier": 2.2,
+  "xp_to_next_level": 156,
+  "current_room": "power_grid",
+  "inventory": [
+    "strength_tonic"
+  ],
+  "equipped": {
+    "weapon": "iron_sword"
+  },
+  "unlocked_spells": [],
+  "examined_targets": [],
+  "cleared_rooms": [
+    "maintenance_tunnel",
+    "sewer",
+    "server_room",
+    "power_grid"
+  ],
+  "enemies_defeated": 5
+}

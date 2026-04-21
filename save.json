@@ -1,0 +1,30 @@
+{
+  "player_name": "Johan",
+  "health": 110,
+  "mana": 65,
+  "level": 2,
+  "experience": 17,
+  "attack": 18,
+  "defense": 6,
+  "speed": 6,
+  "max_health": 110,
+  "max_mana": 65,
+  "mana_regen": 6,
+  "crit_chance": 0.11,
+  "crit_multiplier": 2.1,
+  "xp_to_next_level": 125,
+  "current_room": "sewer",
+  "inventory": [
+    "strength_tonic"
+  ],
+  "equipped": {
+    "weapon": "iron_sword"
+  },
+  "unlocked_spells": [],
+  "examined_targets": [],
+  "cleared_rooms": [
+    "maintenance_tunnel",
+    "sewer"
+  ],
+  "enemies_defeated": 3
+}

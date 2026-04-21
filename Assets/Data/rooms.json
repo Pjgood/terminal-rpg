@@ -13,7 +13,9 @@
         },
         "image_paths": {},
         "items": ["iron_sword"],
-        "enemy": null
+        "enemy": null, 
+        "floor": 1,
+        "pos": [0,0]
     },
 
     "maintenance_tunnel": {
@@ -43,7 +45,11 @@
             "xp_reward": 32,
             "escape_difficulty": 0.15,
             "loot": ["strength_tonic"]
-        }
+        },
+        "floor": 1,
+        "pos": [0,1]
+
+
     },
 
     "sewer": {
@@ -60,18 +66,35 @@
         },
         "image_paths": {},
         "items": [],
-        "enemy": {
-            "name": "Slime",
-            "description": "A pulsating mass of corrupted ooze. It absorbs damage and dissolves flesh.",
-            "health": 40,
-            "attack": 5,
-            "defense": 4,
-            "speed": 3,
-            "crit_chance": 0.05,
-            "crit_multiplier": 1.5,
-            "xp_reward": 40,
-            "escape_difficulty": 0.1
-        }
+        "enemies": [
+            {
+                "name": "Slime",
+                "description": "A pulsating mass of corrupted ooze. It absorbs damage and dissolves flesh.",
+                "health": 40,
+                "attack": 5,
+                "defense": 4,
+                "speed": 3,
+                "crit_chance": 0.05,
+                "crit_multiplier": 1.5,
+                "xp_reward": 40,
+                "escape_difficulty": 0.1
+            },
+            {
+                "name": "Ooze",
+                "description": "Similar to the slime, but more aggressive and faster.",
+                "health": 50,
+                "attack": 6,
+                "defense": 4,
+                "speed": 4,
+                "crit_chance": 0.05,
+                "crit_multiplier": 1.5,
+                "xp_reward": 45,
+                "escape_difficulty": 0.1
+            }
+        ],
+        "floor": 1,
+        "pos": [-1,1]
+
     },
 
     "flooded_concourse": {
@@ -95,7 +118,11 @@
         },
         "image_paths": {},
         "items": [],
-        "enemy": null
+        "enemy": null,
+        "floor": 1,
+        "pos": [0,2]
+
+
     },
 
     "server_room": {
@@ -128,7 +155,9 @@
             "crit_multiplier": 1.75,
             "xp_reward": 56,
             "escape_difficulty": 0.25
-        }
+        },
+        "floor": 1,
+        "pos": [-1,2]
     },
 
     "power_grid": {
@@ -156,7 +185,9 @@
             "crit_multiplier": 1.75,
             "xp_reward": 64,
             "escape_difficulty": 0.3
-        }
+        },
+        "floor": 1,
+        "pos": [-1,3]
     },
 
     "ritual_corridor": {
@@ -189,7 +220,9 @@
             "xp_reward": 80,
             "escape_difficulty": 0.4
         },
-        "blocks_exits": ["north"]
+        "blocks_exits": ["north"],
+        "floor": 1,
+        "pos": [0,3]
     },
 
     "summoning_chamber": {
@@ -200,7 +233,9 @@
         },
         "image_paths": {},
         "items": ["boss_key", "kevlar_suit"],
-        "enemy": null
+        "enemy": null,
+        "floor": 1,
+        "pos": [0,4]
     },
 
     "morgue": {
@@ -229,7 +264,9 @@
             "crit_multiplier": 1.75,
             "xp_reward": 72,
             "escape_difficulty": 0.3
-        }
+        },
+        "floor": 1,
+        "pos": [1,3]
     },
 
     "collapsed_passage": {
@@ -246,7 +283,9 @@
         },
         "image_paths": {},
         "items": [],
-        "enemy": null
+        "enemy": null,
+        "floor": 1,
+        "pos": [1,2]
     },
 
     "hidden_cache": {
@@ -263,7 +302,9 @@
         },
         "image_paths": {},
         "items": ["healing_potion", "strength_tonic"],
-        "enemy": null
+        "enemy": null,
+        "floor": 1,
+        "pos": [2,2]
     },
 
     "derelict_car": {
@@ -291,7 +332,9 @@
             "crit_multiplier": 2.0,
             "xp_reward": 72,
             "escape_difficulty": 0.35
-        }
+        },
+        "floor": 1,
+        "pos": [2,3]
     },
 
     "manufacturing_room": {
@@ -321,7 +364,9 @@
             "crit_multiplier": 1.75,
             "xp_reward": 80,
             "escape_difficulty": 0.35
-        }
+        },
+        "floor": 1,
+        "pos": [-1,2]
     },
 
     "velvet_room": {
@@ -336,7 +381,8 @@
         },
         "image_paths": {},
         "items": ["demons_mark"],
-        "enemy": null
+        "enemy": null,
+        "floor": 1
     },
 
     "civvie_11": {
@@ -347,7 +393,9 @@
         },
         "image_paths": {},
         "items": ["max_healing_potion"],
-        "enemy": null
+        "enemy": null,
+        "floor": 1,
+        "pos": [ -2,1]
     },
 
     "processing_room": {
@@ -376,7 +424,8 @@
             "crit_multiplier": 2.0,
             "xp_reward": 96,
             "escape_difficulty": 0.45
-        }
+        },
+        "floor": 1
     },
 
     "occult_lab": {
@@ -392,7 +441,9 @@
         },
         "image_paths": {},
         "items": ["researchers_journal", "corduroy_pants"],
-        "enemy": null
+        "enemy": null,
+        "floor": 1,
+        "pos": [ -2,4]
     },
 
     "throne_approach": {
@@ -409,6 +460,8 @@
         "image_paths": {},
         "items": [],
         "enemy": null,
+        "floor": 1,
+        "pos": [ -3,3],
         "locked": true,
         "required_key": "boss_key"
     },
@@ -434,6 +487,10 @@
             "escape_difficulty": 0.95,
             "freeze_resistance": 0.9
         },
-        "is_final": true
+        "is_final": true,
+        "floor": 1,
+        "pos": [ -4,3]
+
+
     }
 }
