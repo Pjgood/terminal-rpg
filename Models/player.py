@@ -4,7 +4,7 @@ from Models.item import Consumable
 class Player:
     def __init__(self, name, health, mana, mana_regen, attack,
                  defense, speed, crit_chance, crit_multiplier,
-                 level=1, experience=0):
+                 level=1, experience=0, special_ability=None):
         self.name = name
         self.max_health = health
         self.health = health
@@ -24,6 +24,7 @@ class Player:
         self.current_room = None
         self.examined_targets = []
         self.visited_rooms = set()
+        self.special_ability = special_ability
 
         self.equipped = {
             'weapon': None,
@@ -149,10 +150,10 @@ class Player:
               f"Defense: {old_defense} -> {self.defense}",
               f"Speed: {old_speed} -> {self.speed}",
               f"Crit Chance: {old_crit_chance*100:.1f}% -> {self.crit_chance*100:.1f}%",
-              f"Crit Multiplier: {old_crit_multiplier} -> {self.crit_multiplier}",
+              f"Crit Multiplier: {old_crit_multiplier:.1f} -> {self.crit_multiplier:.1f}",
               f"Mana: {old_mana} -> {self.max_mana}",
               f"Mana Regen: {old_mana_regen} -> {self.mana_regen}"
-        ]
+          ]
 
         width = max(max(len(l) for l in lines), 40) + 4
         border = "+" + "-" * (width - 2) + "+"
@@ -197,20 +198,60 @@ class Player:
             value = self.current_room.examinables[target]
             if isinstance(value, str) and value in self.current_room.examinables:
                 value = self.current_room.examinables[value]
+            item_given_msg = ""
             if isinstance(value, dict):
                 result = value.get('text', '')
                 damage = value.get('damage', 0)
+                # Grant item if specified and not already in inventory or room
+                item_id = value.get('item')
+                if item_id:
+                    # Only give if not already in inventory or room (prevents infinite farming)
+                    from Models.item import Consumable, Equippable, Key
+                    from Game.game import Game
+                    # Find item in item_catalogue (assume game object is accessible via self.current_room)
+                    # We'll try to get the catalogue from the room's loader reference if available
+                    item_catalogue = getattr(self.current_room, 'item_catalogue', None)
+                    if not item_catalogue and hasattr(self.current_room, 'game'):
+                        item_catalogue = getattr(self.current_room.game, 'item_catalogue', None)
+                    if not item_catalogue:
+                        # fallback: try global Game instance if exists
+                        try:
+                            item_catalogue = Game().item_catalogue
+                        except Exception:
+                            item_catalogue = None
+                    if item_catalogue and item_id in item_catalogue:
+                        item_obj = item_catalogue[item_id]
+                        if item_obj not in self.inventory and item_obj not in self.current_room.items:
+                            self.inventory.append(item_obj)
+                            item_given_msg = f"\nYou found and took the {item_obj.name}!"
             else:
                 result = value
                 damage = 0
+                item_given_msg = ""
             if insight_msg:
                 result += f"\n\n{insight_msg}"
+            result += item_given_msg
             return result, damage
         if insight_msg:
             return insight_msg, 0
         return "You don't see that here.", 0
     
+    def use_bepop(self):
+        # Heal for 50% of max health 
+        if self.special_ability != 'Bepop':
+            return "You don't have that special ability."
+        pass
 
+    def use_beats(self):
+        if self.special_ability != 'Beats':
+            return "You don't have that special ability."
+        pass
+
+    def use_defuse(self):
+        if self.special_ability != 'Defuse':
+            return "You don't have that special ability."
+        pass
+    
     @property        
     def is_alive(self):
         return self.health > 0

@@ -10,6 +10,7 @@ from Models.enemy import Enemy
 from Systems.world_loader import WorldLoader
 from Systems.combat import Combat
 from Systems.map_renderer import render_map
+from Systems.special_abilities import use_beats, use_bepop, use_defuse
 
 
 def _resource_path(relative_path):
@@ -34,6 +35,8 @@ class Game:
     def load_world(self):
         loader = WorldLoader(_resource_path("Assets/Data/rooms.json"), _resource_path("Assets/Data/items.json"), _resource_path("Assets/Data/spells.json"))
         self.rooms, self.item_catalogue = loader.load()
+        for room in self.rooms.values():
+            room.item_catalogue = self.item_catalogue
         self.player.current_room = self.rooms['subway_platform']
         self.player.visited_rooms.add('subway_platform')
 
@@ -255,6 +258,13 @@ class Game:
             elif player_action in ('inventory', 'i'):
                 print(self.process_command('inventory'))
                 continue
+            elif player_action in ('special', 'p') or player_action.startswith('special '):
+                if self.player.special_ability == 'Bepop':
+                    print(use_bepop(self.player, enemies))
+                if self.player.special_ability == 'Beats':
+                    print(use_beats(self.player, enemies))
+                if self.player.special_ability == 'Defuse':
+                    print(use_defuse(self.player, enemies))
             else:
                 print("Invalid action, try again.")
                 continue

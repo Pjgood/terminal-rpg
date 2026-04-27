@@ -170,7 +170,8 @@
         },
         "connections": {
             "south": "server_room",
-            "east": "ritual_corridor"
+            "east": "ritual_corridor",
+            "down": "basement"
         },
         "image_paths": {},
         "items": [],
@@ -492,5 +493,119 @@
         "pos": [ -4,3]
 
 
+    },
+
+    "basement": {
+        "name": "Basement",
+        "description": "A dimly lit basement filled with old furniture and boxes. The air is thick with dust and the scent of mold.",
+        "examinables": {
+            "furniture": "The pieces all seem to be from different times with different styles. You see a broken chair, a glass table, and a quite full bookshelf.",
+            "boxes": "The boxes are stacked haphazardly against the walls. They are old and worn, with faded labels that are too damaged to read.",
+            "broken chair": "The chair is old and broken with one leg shorter than the others. You think better of sitting on it.",
+            "chair": "broken chair",
+            "glass table": "The table is covered in a thick layer of dust, but you can make out the faint outline of...a penis. Of course someone drew a penis.",
+            "table": "glass table",
+            "bookshelf": {
+                 "text": "The bookshelf is filled with dusty old books, some of which are falling apart.",
+                 "item": "healing_potion"
+            }
+        },
+        "connections": {
+            "up": "power_grid",
+            "north": "wine_cellar",
+            "south": "bomb_shelter",
+            "east": "dump",
+            "west": "storage_room"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": null,
+        "floor": -1,
+        "pos": [ -1,3]
+    },
+
+    "wine_cellar": {
+        "name": "Wine Cellar",
+        "description": "A cool cellar filled with racks of wine bottles. The air smells of oak and fermented grapes.",
+        "examinables": {
+            "wine": "You can see the labels, but the words are in a different language. All you can make out is 'Sanguis Virginis'."
+        },
+        "connections": {
+            "south": "basement"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": null,
+        "floor": -1,
+        "pos": [ -1,4]
+    },
+
+    "bomb_shelter": {
+        "name": "Bomb Shelter",
+        "description": "A reinforced bomb shelter with a heavy steel door. The air is stale and the walls are lined with cots and emergency supplies.",
+        "examinables": {
+            "cots": "Old and worn, the cots have thin mattresses that have seen better days. They look uncomfortable, but you suppose they would be better than sleeping on the floor...then you see the stains.",
+            "supplies": {
+                "text": "The emergency supplies include canned food, bottled water, a first aid kit, and a few other items that might be useful in a pinch.",
+                "item": "healing_potion"
+            }
+        },
+        "connections": {
+            "north": "basement"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": null,
+        "floor": -1,
+        "pos": [ -1,2]
+        },
+
+    "dump": {
+        "name": "Dump",
+        "description": "A large, open area filled with piles of garbage and discarded items. The smell is overwhelming.",
+        "examinables": {
+            "garbage": "The garbage is piled high, with all sorts of discarded items. You see old food, broken furniture, and random trinkets.",
+            "items": {
+                "text": "Among the garbage, you notice some items that might be useful.",
+                "item": "defense_tonic"
+            }
+        },
+        "connections": {
+            "west": "basement"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": null,
+        "floor": -1,
+        "pos": [ 0,3]
+    },
+
+    "storage_room": {
+        "name": "Storage Room",
+        "description": "A cluttered storage room filled with boxes and old equipment.",
+        "examinables": {
+            "boxes": "The boxes are decaying and seeping inward. You see some tools, a few old electronics, and...THE THREE GOD CARDS??? Oh wait, no, just knockoffs.",
+            "box": "boxes",
+            "equipment": "You see a stationary bike covered in rust and definitely inooperable. You're considering this dungeon your cardio, so you decide to leave it alone."
+        },
+        "connections": {
+            "east": "basement"
+        },
+        "image_paths": {},
+        "items": [],
+        "enemy": {
+            "name": "Mimic",
+            "description": "A creature that can take the form of inanimate objects. It has a gaping maw filled with sharp teeth.",
+            "health": 45,
+            "attack": 10,
+            "defense": 4,
+            "speed": 5,
+            "crit_chance": 0.1,
+            "crit_multiplier": 1.75,
+            "xp_reward": 60,
+            "escape_difficulty": 0.25
+        },
+        "floor": -1,
+        "pos": [ -2,3]
     }
-}
+}   

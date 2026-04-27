@@ -1,36 +1,50 @@
 {
   "player_name": "Buttes",
-  "health": 110,
-  "mana": 65,
-  "level": 2,
-  "experience": 17,
-  "attack": 18,
-  "defense": 6,
-  "speed": 6,
-  "max_health": 110,
-  "max_mana": 65,
-  "mana_regen": 6,
-  "crit_chance": 0.11,
-  "crit_multiplier": 2.1,
-  "xp_to_next_level": 125,
-  "current_room": "flooded_concourse",
+  "health": 111,
+  "mana": 37,
+  "level": 3,
+  "experience": 108,
+  "attack": 21,
+  "defense": 7,
+  "speed": 7,
+  "max_health": 120,
+  "max_mana": 70,
+  "mana_regen": 7,
+  "crit_chance": 0.12,
+  "crit_multiplier": 2.2,
+  "xp_to_next_level": 156,
+  "current_room": "power_grid",
   "inventory": [
-    "strength_tonic"
+    "strength_tonic",
+    "grimoire"
   ],
   "equipped": {
     "weapon": "iron_sword"
   },
-  "unlocked_spells": [],
-  "examined_targets": [],
+  "unlocked_spells": [
+    "Ice Shower"
+  ],
+  "examined_targets": [
+    "weapon",
+    "drawer",
+    "chart",
+    "script"
+  ],
   "cleared_rooms": [
     "maintenance_tunnel",
-    "sewer"
+    "sewer",
+    "power_grid",
+    "ritual_corridor",
+    "morgue"
   ],
-  "enemies_defeated": 3,
+  "enemies_defeated": 6,
   "visited_rooms": [
     "subway_platform",
-    "flooded_concourse",
+    "power_grid",
+    "morgue",
     "maintenance_tunnel",
-    "sewer"
+    "sewer",
+    "ritual_corridor",
+    "flooded_concourse"
   ]
 }

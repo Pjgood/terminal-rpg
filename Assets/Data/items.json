@@ -25,17 +25,30 @@
         "duration": 3
     },
 
-        "max_healing_potion": {
-        "name": "Max Healing Potion",
-        "description": "A large vial filled with a shimmering golden ambrosia. It fully restores health when used.",
+    "max_healing_potion": {
+    "name": "Max Healing Potion",
+    "description": "A large vial filled with a shimmering golden ambrosia. It fully restores health when used.",
+    "type": "consumable",
+    "heal_amount": 9999,
+    "attack_bonus": 0,
+    "defense_bonus": 0,
+    "speed_bonus": 0,
+    "crit_chance_bonus": 0,
+    "crit_multiplier_bonus": 0,
+    "duration": 0
+    },
+
+    "defense_tonic": {
+        "name": "Defense Tonic",
+        "description": "A small vial filled with a glowing green liquid. It increases defense by 10 for 3 turns when used.",
         "type": "consumable",
-        "heal_amount": 9999,
+        "heal_amount": 0,
         "attack_bonus": 0,
-        "defense_bonus": 0,
+        "defense_bonus": 10,
         "speed_bonus": 0,
         "crit_chance_bonus": 0,
         "crit_multiplier_bonus": 0,
-        "duration": 0
+        "duration": 3
     },
 
     "demons_mark": {
