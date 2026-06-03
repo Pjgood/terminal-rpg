@@ -106,7 +106,7 @@ def main():
                 if name == 'starlifter95':
                     game.player.special_ability = 'Bepop'
                     print("\nWelcome, Starlifter95! Thanks for always being my best friend and companion in our adventures.\n" \
-                    "Your stats have been set to reflect your heroic spirit and unwavering spirit. Just remember, if you're ever lost,\n" \
+                    "Your stats have been set to reflect your heroic spirit and unwavering support. Just remember, if you're ever lost,\n" \
                     "Go left! Go that way!!!\n" \
                     "Your special ability is Bepop\n"
                     "Type 'special' or 'p' in combat to use it!")

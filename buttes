@@ -22,7 +22,9 @@
     "weapon": "iron_sword"
   },
   "unlocked_spells": [
-    "Ice Shower"
+    "Lightning",
+    "Ice Shower",
+    "Fireball"
   ],
   "examined_targets": [
     "weapon",
