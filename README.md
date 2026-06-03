@@ -1,15 +1,15 @@
 # Descent - Terminal Adventure Game
 
-A terminal-based RPG built in Python as a senior capstone project at the University of Arizona.
+A terminal based RPG built in Python as a senior capstone project at the University of Arizona.
 
 Descent is a text adventure with exploration, turn-based combat, inventory and equipment systems, save/load support, multi-floor maps, and optional secret character minigame abilities.
 
 ## Features
 
-- Text-command exploration (look, go, examine, take, use, equip, attack, map, save/load)
+- Text command exploration (look, go, examine, take, use, equip, attack, map, save/load)
 - Turn-based combat with stats, critical hits, buffs/debuffs, and loot
 - Inventory and equipment management
-- JSON-driven world data (rooms, items, spells)
+- JSON driven world data (rooms, items, spells)
 - Save/load game state to JSON files
 - Multi-floor ASCII map rendering with visited-room tracking
 - Secret characters with unique special abilities and combat minigames
@@ -100,7 +100,7 @@ This project was built to practice end-to-end game development fundamentals:
 
 ## Future Improvements
 
-- Cross-platform replacement for Windows-only minigame input paths
+- Cross-platform replacement for Windows only minigame input paths
 - Additional content expansion (rooms, enemies, abilities, endings)
 - Automated tests for parser, combat calculations, and save/load integrity
 - Optional richer UI mode on top of the core game logic
