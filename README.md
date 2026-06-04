@@ -65,16 +65,6 @@ python3 Game/main.py
 - During combat, type `special` (or `p`) to use a secret character ability, if unlocked.
 - Save with `save` or `save <filename>` and load when prompted at startup.
 
-## Screenshots
-
-Main map snapshot:
-
-![Map Screenshot](Completed_Map.jpg)
-
-Updated map snapshot:
-
-![Updated Map Screenshot](Newly_Completed_Map.jpg)
-
 ## Spell Animation GIFs
 
 Lightning:
@@ -88,6 +78,17 @@ Ice Shower:
 Fireball:
 
 ![Fireball Spell Animation](Assets/Media/Fireball.gif)
+
+## Screenshots
+
+Main map snapshot:
+
+![Map Screenshot](Completed_Map.jpg)
+
+Updated map snapshot:
+
+![Updated Map Screenshot](Newly_Completed_Map.jpg)
+
 
 ## Why This Project
 
