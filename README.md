@@ -4,6 +4,8 @@ A terminal based RPG built in Python as a senior capstone project at the Univers
 
 Descent is a text adventure with exploration, turn-based combat, inventory and equipment systems, save/load support, multi-floor maps, and optional secret character minigame abilities.
 
+A downloadable EXE can be found at https://woohoo-of-a.itch.io/descent-v1
+
 ## Features
 
 - Text command exploration (look, go, examine, take, use, equip, attack, map, save/load)
@@ -12,7 +14,7 @@ Descent is a text adventure with exploration, turn-based combat, inventory and e
 - JSON driven world data (rooms, items, spells)
 - Save/load game state to JSON files
 - Multi-floor ASCII map rendering with visited-room tracking
-- Secret characters with unique special abilities and combat minigames
+- Secret characters with unique special abilities and combat minigames (Try "starlifter95", "meerakul", or "magicremorade")
 
 ## Tech Stack
 
